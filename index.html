@@ -5,29 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Natalia Sierra Psicóloga</title>
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
+      font-family: 'Georgia', serif;
+      background-color: #f5f0eb;
+      color: #3a3330;
+    }
+
+    /* ── Hero ── */
+    .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Georgia', serif;
-      background-color: #f5f0eb;
-      color: #3a3330;
-      padding: 2rem;
-    }
-
-    .container {
-      max-width: 560px;
-      width: 100%;
+      padding: 3rem 2rem;
       text-align: center;
     }
+
+    .hero .container { max-width: 560px; width: 100%; }
 
     .logo {
       font-size: 0.85rem;
@@ -37,33 +34,13 @@
       margin-bottom: 1.5rem;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      font-weight: normal;
-      line-height: 1.25;
-      margin-bottom: 0.5rem;
-    }
+    h1 { font-size: 2.2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.5rem; }
 
-    .subtitle {
-      font-size: 1rem;
-      color: #8a7060;
-      margin-bottom: 2.5rem;
-      font-style: italic;
-    }
+    .subtitle { font-size: 1rem; color: #8a7060; margin-bottom: 2.5rem; font-style: italic; }
 
-    .divider {
-      width: 48px;
-      height: 1px;
-      background-color: #c4b5a5;
-      margin: 0 auto 2.5rem;
-    }
+    .divider { width: 48px; height: 1px; background-color: #c4b5a5; margin: 0 auto 2.5rem; }
 
-    .message {
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: #5a4d45;
-      margin-bottom: 2.5rem;
-    }
+    .message { font-size: 1.05rem; line-height: 1.75; color: #5a4d45; margin-bottom: 2.5rem; }
 
     .form-label {
       display: block;
@@ -75,7 +52,6 @@
 
     .input-row {
       display: flex;
-      gap: 0;
       max-width: 420px;
       margin: 0 auto 1rem;
       border: 1px solid #c4b5a5;
@@ -94,9 +70,7 @@
       color: #3a3330;
     }
 
-    .input-row input[type="email"]::placeholder {
-      color: #b0a098;
-    }
+    .input-row input[type="email"]::placeholder { color: #b0a098; }
 
     .input-row button {
       padding: 0.75rem 1.25rem;
@@ -111,75 +85,296 @@
       white-space: nowrap;
     }
 
-    .input-row button:hover {
-      background-color: #6e5a4c;
+    .input-row button:hover { background-color: #6e5a4c; }
+
+    .note { font-size: 0.78rem; color: #a0918a; margin-top: 0.75rem; }
+
+    /* ── Sections ── */
+    .section { padding: 4rem 2rem; text-align: center; }
+    .section.alt { background: #fff; }
+    .section-inner { max-width: 680px; margin: 0 auto; }
+
+    h2 { font-size: 1.5rem; font-weight: normal; color: #3a3330; margin-bottom: 0.5rem; }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: #8a7060;
+      font-style: italic;
+      margin-bottom: 2.5rem;
     }
 
-    .note {
-      font-size: 0.78rem;
-      color: #a0918a;
-      margin-top: 0.75rem;
+    /* ── Carousel ── */
+    .carousel-wrapper { position: relative; overflow: hidden; border-radius: 8px; }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
+    .review-card { min-width: 100%; padding: 2.5rem 2.5rem 2rem; background: #f5f0eb; }
+
+    .review-stars { font-size: 1.25rem; color: #c4a060; margin-bottom: 1.25rem; letter-spacing: 2px; }
+
+    .review-text {
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #5a4d45;
+      margin-bottom: 1.25rem;
+    }
+
+    .review-text::before { content: '\201C'; }
+    .review-text::after  { content: '\201D'; }
+
+    .review-author { font-size: 0.85rem; color: #8a7060; letter-spacing: 0.05em; }
+    .review-date   { font-size: 0.75rem; color: #b0a098; margin-top: 0.2rem; }
+
+    .carousel-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .carousel-btn {
+      background: none;
+      border: 1px solid #c4b5a5;
+      color: #8a7060;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      line-height: 1;
+      transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .carousel-btn:hover { background: #8a7060; color: #fff; border-color: #8a7060; }
+
+    .dots { display: flex; gap: 7px; align-items: center; }
+
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #c4b5a5;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .dot.active { background: #8a7060; transform: scale(1.3); }
+
+    /* ── CTA ── */
+    .cta-btn {
+      display: inline-block;
+      padding: 0.85rem 2.25rem;
+      border: 1px solid #8a7060;
+      border-radius: 4px;
+      color: #8a7060;
+      font-family: inherit;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .cta-btn:hover { background: #8a7060; color: #fff; }
+
+    /* ── Footer ── */
     footer {
-      margin-top: 4rem;
+      padding: 2rem;
+      text-align: center;
       font-size: 0.75rem;
       color: #b0a098;
       letter-spacing: 0.05em;
     }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      h1 { font-size: 1.7rem; }
+      .review-card { padding: 2rem 1.25rem 1.5rem; }
+      .input-row button { font-size: 0.82rem; padding: 0.75rem 0.9rem; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <p class="logo">Psicología &amp; Bienestar</p>
 
-    <h1>Natalia Sierra</h1>
-    <p class="subtitle">Psicóloga</p>
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="container">
+      <p class="logo">Psicología &amp; Bienestar</p>
+      <h1>Natalia Sierra</h1>
+      <p class="subtitle">Psicóloga</p>
+      <div class="divider"></div>
+      <p class="message">
+        Estamos preparando algo especial para ti.<br />
+        Muy pronto encontrarás aquí un espacio de acompañamiento,<br />
+        escucha y crecimiento personal.
+      </p>
+      <label class="form-label" for="email">
+        Déjanos tu correo y te avisamos cuando abramos.<br />
+        También puedes escribirnos para agendar una sesión.
+      </label>
+      <form onsubmit="handleNewsletterSubmit(event)">
+        <div class="input-row">
+          <input type="email" id="email" name="email"
+            placeholder="tu@correo.com" required autocomplete="email" />
+          <button type="submit">Quiero saber más</button>
+        </div>
+        <p class="note" id="newsletter-msg"></p>
+      </form>
+    </div>
+  </section>
 
-    <div class="divider"></div>
+  <!-- ── Reviews carousel ── -->
+  <section class="section alt" id="resenas">
+    <div class="section-inner">
+      <h2>Lo que dicen mis pacientes</h2>
+      <p class="section-sub">Testimonios de quienes han confiado en mí</p>
 
-    <p class="message">
-      Estamos preparando algo especial para ti.<br />
-      Muy pronto encontrarás aquí un espacio de acompañamiento,<br />
-      escucha y crecimiento personal.
-    </p>
-
-    <label class="form-label" for="email">
-      Déjanos tu correo y te avisamos cuando abramos.<br />
-      También puedes escribirnos para agendar una sesión.
-    </label>
-
-    <form
-      action="#"
-      method="post"
-      onsubmit="handleSubmit(event)"
-    >
-      <div class="input-row">
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="tu@correo.com"
-          required
-          autocomplete="email"
-        />
-        <button type="submit">Quiero saber más</button>
+      <div class="carousel-wrapper" id="carousel-wrapper">
+        <div class="carousel-track" id="carousel-track"></div>
       </div>
-      <p class="note" id="form-msg"></p>
-    </form>
 
-    <footer>
-      &copy; <span id="year"></span> Natalia Sierra Psicóloga &mdash; Todos los derechos reservados
-    </footer>
-  </div>
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="prev-btn" aria-label="Anterior">&#8249;</button>
+        <div class="dots" id="dots"></div>
+        <button class="carousel-btn" id="next-btn" aria-label="Siguiente">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Leave a review CTA ── -->
+  <section class="section">
+    <div class="section-inner">
+      <h2>¿Has trabajado conmigo?</h2>
+      <p class="section-sub">Tu opinión ayuda a otras personas a dar el primer paso</p>
+      <a href="dejar-resena.html" class="cta-btn">Dejar una reseña</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; <span id="year"></span> Natalia Sierra Psicóloga &mdash; Todos los derechos reservados
+  </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    function handleSubmit(e) {
+    function stars(n) {
+      return '★'.repeat(Number(n)) + '☆'.repeat(5 - Number(n));
+    }
+
+    function formatDate(iso) {
+      const [y, m, d] = iso.split('-');
+      const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+      return `${Number(d)} ${months[Number(m) - 1]}. ${y}`;
+    }
+
+    function parseCSV(text) {
+      const rows = [];
+      const lines = text.trim().split('\n');
+      const headers = parseLine(lines[0]);
+      for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue;
+        const vals = parseLine(lines[i]);
+        const obj = {};
+        headers.forEach((h, idx) => obj[h.trim()] = (vals[idx] || '').trim());
+        rows.push(obj);
+      }
+      return rows;
+    }
+
+    function parseLine(line) {
+      const fields = [];
+      let cur = '', inQ = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') { inQ = !inQ; }
+        else if (ch === ',' && !inQ) { fields.push(cur); cur = ''; }
+        else { cur += ch; }
+      }
+      fields.push(cur);
+      return fields;
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    let current = 0, timer = null;
+
+    async function initCarousel() {
+      const track   = document.getElementById('carousel-track');
+      const dots    = document.getElementById('dots');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+
+      let reviews = [];
+      try {
+        const res = await fetch('./reviews.csv');
+        if (res.ok) reviews = parseCSV(await res.text());
+      } catch (_) {}
+
+      if (!reviews.length) {
+        track.innerHTML = `<div class="review-card" style="min-width:100%;padding:2.5rem;color:#8a7060;font-style:italic">Pronto aparecerán aquí las primeras reseñas.</div>`;
+        prevBtn.style.display = nextBtn.style.display = 'none';
+        return;
+      }
+
+      reviews.forEach((r, i) => {
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.setAttribute('aria-label', `Reseña ${i + 1} de ${reviews.length}`);
+        card.innerHTML = `
+          <div class="review-stars">${stars(r.stars)}</div>
+          <p class="review-text">${escapeHtml(r.public_comment)}</p>
+          <p class="review-author">${escapeHtml(r.name)}</p>
+          <p class="review-date">${formatDate(r.date)}</p>`;
+        track.appendChild(card);
+
+        const dot = document.createElement('button');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Reseña ${i + 1}`);
+        dot.addEventListener('click', () => { goTo(i); resetTimer(); });
+        dots.appendChild(dot);
+      });
+
+      if (reviews.length === 1) {
+        prevBtn.style.display = nextBtn.style.display = 'none';
+      } else {
+        prevBtn.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+        nextBtn.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+        startTimer();
+      }
+
+      const wrap = document.getElementById('carousel-wrapper');
+      wrap.addEventListener('mouseenter', () => clearInterval(timer));
+      wrap.addEventListener('mouseleave', startTimer);
+
+      let tx = 0;
+      wrap.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+      wrap.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - tx;
+        if (Math.abs(dx) > 50) { goTo(current + (dx < 0 ? 1 : -1)); resetTimer(); }
+      });
+    }
+
+    function goTo(idx) {
+      const total = document.querySelectorAll('.review-card').length;
+      current = ((idx % total) + total) % total;
+      document.getElementById('carousel-track').style.transform = `translateX(-${current * 100}%)`;
+      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function startTimer() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 5000); }
+    function resetTimer() { clearInterval(timer); startTimer(); }
+
+    initCarousel();
+
+    function handleNewsletterSubmit(e) {
       e.preventDefault();
       const email = document.getElementById('email').value;
-      const msg = document.getElementById('form-msg');
+      const msg   = document.getElementById('newsletter-msg');
       msg.style.color = '#8a7060';
       msg.textContent = '¡Gracias! Te contactaremos pronto en ' + email + '.';
       e.target.reset();

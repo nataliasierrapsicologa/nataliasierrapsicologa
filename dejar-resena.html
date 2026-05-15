@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dejar una reseña — Natalia Sierra Psicóloga</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f5f0eb;
+      color: #3a3330;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    header {
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid #e0d5cb;
+      background: #fff;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      color: #8a7060;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: #6e5a4c; }
+
+    .back-link svg { flex-shrink: 0; }
+
+    .header-brand {
+      flex: 1;
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8a7060;
+      /* offset to visually center despite the back link */
+      padding-right: 4rem;
+    }
+
+    /* ── Main ── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 2rem 4rem;
+    }
+
+    .page-title {
+      font-size: 1.8rem;
+      font-weight: normal;
+      margin-bottom: 0.4rem;
+      text-align: center;
+    }
+
+    .page-sub {
+      font-size: 0.9rem;
+      color: #8a7060;
+      font-style: italic;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    /* ── Form card ── */
+    .form-card {
+      width: 100%;
+      max-width: 540px;
+      background: #fff;
+      border-radius: 8px;
+      padding: 2.25rem 2.25rem 2rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+    }
+
+    .fg { margin-bottom: 1.35rem; }
+
+    .fg > label {
+      display: block;
+      font-size: 0.82rem;
+      color: #8a7060;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .fg input[type="text"],
+    .fg textarea {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid #c4b5a5;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: #3a3330;
+      background: #fdfaf7;
+      outline: none;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+
+    .fg input[type="text"]:focus,
+    .fg textarea:focus { border-color: #8a7060; }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder { color: #b8aba3; }
+
+    .radio-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.15rem; }
+
+    .radio-row label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      color: #5a4d45;
+      cursor: pointer;
+    }
+
+    .radio-row input[type="radio"] { accent-color: #8a7060; }
+
+    /* ── Star rating ── */
+    .star-input {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 2px;
+      margin-top: 0.35rem;
+    }
+
+    .star-input input { display: none; }
+
+    .star-input label {
+      font-size: 2.2rem;
+      color: #d0c0b5;
+      cursor: pointer;
+      transition: color 0.1s;
+      line-height: 1;
+    }
+
+    .star-input:hover label                   { color: #d0c0b5; }
+    .star-input label:hover,
+    .star-input label:hover ~ label           { color: #c4a060; }
+    .star-input input:checked ~ label         { color: #c4a060; }
+
+    .private-hint {
+      font-size: 0.75rem;
+      color: #a0918a;
+      margin-top: 0.25rem;
+    }
+
+    /* ── Submit ── */
+    .submit-btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: #8a7060;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 0.25rem;
+      letter-spacing: 0.03em;
+    }
+
+    .submit-btn:hover { background: #6e5a4c; }
+    .submit-btn:disabled { background: #b0a098; cursor: default; }
+
+    .form-result {
+      text-align: center;
+      font-size: 0.82rem;
+      margin-top: 0.9rem;
+      min-height: 1.2em;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: #b0a098;
+      letter-spacing: 0.05em;
+      border-top: 1px solid #e0d5cb;
+    }
+
+    @media (max-width: 480px) {
+      .form-card { padding: 1.5rem 1.25rem; }
+      .header-brand { padding-right: 2rem; }
+      .page-title { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="back-link" aria-label="Volver al inicio">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M10 3L5 8l5 5"/>
+      </svg>
+      Volver
+    </a>
+    <span class="header-brand">Natalia Sierra Psicóloga</span>
+  </header>
+
+  <main>
+    <h1 class="page-title">Comparte tu experiencia</h1>
+    <p class="page-sub">Tu reseña será revisada antes de publicarse</p>
+
+    <div class="form-card">
+      <form id="review-form" novalidate>
+
+        <div class="fg">
+          <label for="r-name">Tu nombre</label>
+          <input type="text" id="r-name" name="name"
+            placeholder="Ej. María G." required maxlength="80" />
+        </div>
+
+        <div class="fg">
+          <label>¿Cómo quieres aparecer en la reseña?</label>
+          <div class="radio-row">
+            <label>
+              <input type="radio" name="anonymous" value="no" checked />
+              Mostrar mi nombre
+            </label>
+            <label>
+              <input type="radio" name="anonymous" value="yes" />
+              Publicar como Anónimo/a
+            </label>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label>Valoración</label>
+          <div class="star-input" role="radiogroup" aria-label="Puntuación de 1 a 5">
+            <input type="radio" name="stars" id="s5" value="5"><label for="s5" title="5 estrellas">&#9733;</label>
+            <input type="radio" name="stars" id="s4" value="4"><label for="s4" title="4 estrellas">&#9733;</label>
+            <input type="radio" name="stars" id="s3" value="3"><label for="s3" title="3 estrellas">&#9733;</label>
+            <input type="radio" name="stars" id="s2" value="2"><label for="s2" title="2 estrellas">&#9733;</label>
+            <input type="radio" name="stars" id="s1" value="1"><label for="s1" title="1 estrella">&#9733;</label>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label for="r-why">¿Por qué me elegiste?</label>
+          <textarea id="r-why" name="why_chose" rows="3"
+            placeholder="Cuéntame cómo llegaste hasta mí y qué buscabas (opcional)..."></textarea>
+          <p class="private-hint">&#128274; Privado — solo lo leeré yo, no se publicará.</p>
+        </div>
+
+        <div class="fg">
+          <label for="r-public">Comentario público <span style="color:#b0a098">*</span></label>
+          <textarea id="r-public" name="public_comment" rows="4" required
+            placeholder="Comparte tu experiencia con quienes están considerando comenzar su proceso..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="review-submit">Enviar reseña</button>
+        <p class="form-result" id="review-msg"></p>
+
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Natalia Sierra Psicóloga &mdash; Todos los derechos reservados
+  </footer>
+
+  <script>
+    const FORMSPREE_URL = 'https://formspree.io/f/mbdwvnpa';
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('review-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const msg = document.getElementById('review-msg');
+      const btn = document.getElementById('review-submit');
+      const fd  = new FormData(this);
+
+      if (!fd.get('stars')) {
+        msg.style.color = '#b05050';
+        msg.textContent = 'Por favor selecciona una valoración.';
+        return;
+      }
+
+      if (!fd.get('name').trim()) {
+        msg.style.color = '#b05050';
+        msg.textContent = 'Por favor escribe tu nombre.';
+        return;
+      }
+
+      btn.disabled    = true;
+      btn.textContent = 'Enviando…';
+      msg.textContent = '';
+
+      const name      = fd.get('name').trim();
+      const anon      = fd.get('anonymous') === 'yes';
+      const stars     = fd.get('stars');
+      const why       = fd.get('why_chose').trim() || '(no respondido)';
+      const comment   = fd.get('public_comment').trim();
+      const date      = new Date().toISOString().slice(0, 10);
+
+      // CSV-ready row for easy copy-paste into reviews.csv:
+      // name, stars, public_comment, date
+      const csvRow = `"${anon ? 'Anónimo/a' : name}",${stars},"${comment.replace(/"/g, '""')}",${date}`;
+
+      const payload = {
+        _subject: `Nueva reseña ⭐${stars}/5 — pendiente de aprobación`,
+        message: [
+          '=== FILA LISTA PARA reviews.csv ===',
+          csvRow,
+          '',
+          '=== DETALLE COMPLETO ===',
+          `Nombre:    ${name}`,
+          `Anónimo:   ${anon ? 'Sí' : 'No'}`,
+          `Estrellas: ${stars}/5`,
+          `Fecha:     ${date}`,
+          '',
+          '— Comentario público —',
+          comment,
+          '',
+          '— Por qué me eligió (privado) —',
+          why,
+        ].join('\n'),
+      };
+
+      try {
+        const res = await fetch(FORMSPREE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (res.ok) {
+          msg.style.color = '#8a7060';
+          msg.textContent = '¡Gracias por tu reseña! La publicaremos tras revisarla.';
+          this.reset();
+        } else {
+          throw new Error();
+        }
+      } catch (_) {
+        msg.style.color = '#b05050';
+        msg.textContent = 'Hubo un problema al enviar. Inténtalo de nuevo o escríbeme directamente.';
+      } finally {
+        btn.disabled    = false;
+        btn.textContent = 'Enviar reseña';
+      }
+    });
+  </script>
+</body>
+</html>
