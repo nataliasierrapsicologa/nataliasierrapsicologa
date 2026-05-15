@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natalia Sierra Psicóloga</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Georgia', serif;
+      background-color: #f5f0eb;
+      color: #3a3330;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 560px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #8a7060;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: normal;
+      line-height: 1.25;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #8a7060;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background-color: #c4b5a5;
+      margin: 0 auto 2.5rem;
+    }
+
+    .message {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: #5a4d45;
+      margin-bottom: 2.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.9rem;
+      color: #8a7060;
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 0;
+      max-width: 420px;
+      margin: 0 auto 1rem;
+      border: 1px solid #c4b5a5;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .input-row input[type="email"] {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fff;
+      color: #3a3330;
+    }
+
+    .input-row input[type="email"]::placeholder {
+      color: #b0a098;
+    }
+
+    .input-row button {
+      padding: 0.75rem 1.25rem;
+      border: none;
+      background-color: #8a7060;
+      color: #fff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .input-row button:hover {
+      background-color: #6e5a4c;
+    }
+
+    .note {
+      font-size: 0.78rem;
+      color: #a0918a;
+      margin-top: 0.75rem;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.75rem;
+      color: #b0a098;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="logo">Psicología &amp; Bienestar</p>
+
+    <h1>Natalia Sierra</h1>
+    <p class="subtitle">Psicóloga</p>
+
+    <div class="divider"></div>
+
+    <p class="message">
+      Estamos preparando algo especial para ti.<br />
+      Muy pronto encontrarás aquí un espacio de acompañamiento,<br />
+      escucha y crecimiento personal.
+    </p>
+
+    <label class="form-label" for="email">
+      Déjanos tu correo y te avisamos cuando abramos.<br />
+      También puedes escribirnos para agendar una sesión.
+    </label>
+
+    <form
+      action="#"
+      method="post"
+      onsubmit="handleSubmit(event)"
+    >
+      <div class="input-row">
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="tu@correo.com"
+          required
+          autocomplete="email"
+        />
+        <button type="submit">Quiero saber más</button>
+      </div>
+      <p class="note" id="form-msg"></p>
+    </form>
+
+    <footer>
+      &copy; <span id="year"></span> Natalia Sierra Psicóloga &mdash; Todos los derechos reservados
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const msg = document.getElementById('form-msg');
+      msg.style.color = '#8a7060';
+      msg.textContent = '¡Gracias! Te contactaremos pronto en ' + email + '.';
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
