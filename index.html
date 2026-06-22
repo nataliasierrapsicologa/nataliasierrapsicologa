@@ -3,271 +3,700 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Natalia Sierra Psicóloga</title>
+  <title>Inicio | Natalia Sierra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Onest:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --bg:      #f5f2ed;
+      --text:    #2c3e3b;
+      --accent:  #d27d6b;
+      --accent-dark: #b8604e;
+      --muted:   #7a8f8c;
+      --border:  #d8d0c8;
+      --white:   #fff;
+      --ff-head: 'Fraunces', Georgia, serif;
+      --ff-body: 'Onest', Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Georgia', serif;
-      background-color: #f5f0eb;
-      color: #3a3330;
+      font-family: var(--ff-body);
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
 
-    /* ── Hero ── */
-    .hero {
-      min-height: 100vh;
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 3rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 3rem 2rem;
-      text-align: center;
+      justify-content: space-between;
+      height: 68px;
     }
 
-    .hero .container { max-width: 560px; width: 100%; }
-
-    .logo {
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
+    .nav-brand {
+      font-family: var(--ff-body);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #8a7060;
-      margin-bottom: 1.5rem;
-    }
-
-    h1 { font-size: 2.2rem; font-weight: normal; line-height: 1.25; margin-bottom: 0.5rem; }
-
-    .subtitle { font-size: 1rem; color: #8a7060; margin-bottom: 2.5rem; font-style: italic; }
-
-    .divider { width: 48px; height: 1px; background-color: #c4b5a5; margin: 0 auto 2.5rem; }
-
-    .message { font-size: 1.05rem; line-height: 1.75; color: #5a4d45; margin-bottom: 2.5rem; }
-
-    .form-label {
-      display: block;
-      font-size: 0.9rem;
-      color: #8a7060;
-      margin-bottom: 1rem;
-      letter-spacing: 0.05em;
-    }
-
-    .input-row {
-      display: flex;
-      max-width: 420px;
-      margin: 0 auto 1rem;
-      border: 1px solid #c4b5a5;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .input-row input[type="email"] {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: none;
-      outline: none;
-      font-family: inherit;
-      font-size: 0.95rem;
-      background: #fff;
-      color: #3a3330;
-    }
-
-    .input-row input[type="email"]::placeholder { color: #b0a098; }
-
-    .input-row button {
-      padding: 0.75rem 1.25rem;
-      border: none;
-      background-color: #8a7060;
-      color: #fff;
-      font-family: inherit;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: background-color 0.2s;
+      color: var(--text);
+      text-decoration: none;
       white-space: nowrap;
     }
 
-    .input-row button:hover { background-color: #6e5a4c; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
 
-    .note { font-size: 0.78rem; color: #a0918a; margin-top: 0.75rem; }
+    .nav-links a {
+      font-family: var(--ff-body);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      background: var(--accent) !important;
+      color: var(--text) !important;
+      border: 1px solid var(--text) !important;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.08em !important;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--accent-dark) !important; }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0; right: 0;
+        background: var(--bg);
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 0.75rem 1.5rem; }
+      .nav-cta { margin: 0.5rem 1.5rem; display: block; text-align: center; }
+    }
 
     /* ── Sections ── */
-    .section { padding: 4rem 2rem; text-align: center; }
-    .section.alt { background: #fff; }
-    .section-inner { max-width: 680px; margin: 0 auto; }
+    section { padding: 6rem 3rem; }
+    .section-inner { max-width: 800px; margin: 0 auto; }
+    .section-inner.wide { max-width: 1000px; }
 
-    h2 { font-size: 1.5rem; font-weight: normal; color: #3a3330; margin-bottom: 0.5rem; }
+    h1, h2 {
+      font-family: var(--ff-head);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1;
+    }
 
-    .section-sub {
-      font-size: 0.9rem;
-      color: #8a7060;
+    h1 { font-size: clamp(3rem, 8vw, 4.5rem); }
+    h2 { font-size: clamp(2.2rem, 6vw, 3.9rem); line-height: 1.05; }
+
+    p { line-height: 1.7; }
+
+    /* ── Hero ── */
+    #inicio {
+      min-height: calc(100vh - 68px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+
+    .hero-inner { max-width: 700px; margin: 0 auto; }
+
+    #inicio h1 { margin-bottom: 0.15em; }
+
+    .hero-subtitle {
+      font-family: var(--ff-head);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 300;
       font-style: italic;
+      color: var(--text);
+      margin-bottom: 2rem;
+      line-height: 1;
+    }
+
+    .hero-desc {
+      font-family: var(--ff-body);
+      font-size: 1.15rem;
+      color: var(--text);
+      line-height: 1.65;
       margin-bottom: 2.5rem;
     }
 
-    /* ── Carousel ── */
-    .carousel-wrapper { position: relative; overflow: hidden; border-radius: 8px; }
+    .hero-pricing {
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-free {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-price-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-price {
+      font-family: var(--ff-head);
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--text);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: var(--accent);
+      color: var(--text);
+      border: 1px solid var(--text);
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--accent-dark); }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid var(--text);
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { background: var(--text); color: var(--bg); }
+
+    /* ── Sobre mí ── */
+    #sobre-mi .section-heading { margin-bottom: 2.5rem; }
+
+    .about-body {
+      font-size: 1.05rem;
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    .about-body p { margin-bottom: 1.4rem; }
+    .about-body p:last-child { margin-bottom: 0; }
+
+    /* ── Áreas ── */
+    .areas-list {
+      columns: 2;
+      column-gap: 3rem;
+      margin-top: 2rem;
+      list-style: none;
+    }
+
+    .areas-list li {
+      font-size: 1.05rem;
+      color: var(--text);
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--border);
+      break-inside: avoid;
+    }
+
+    @media (max-width: 560px) {
+      .areas-list { columns: 1; }
+    }
+
+    /* ── Método ── */
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem 4rem;
+      margin-top: 3rem;
+      text-align: left;
+    }
+
+    .step-num {
+      font-family: var(--ff-head);
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .step h3 {
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.01em;
+    }
+
+    .step p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 580px) {
+      .steps { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ── Reviews ── */
+    .carousel-wrapper { position: relative; overflow: hidden; }
 
     .carousel-track {
       display: flex;
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .review-card { min-width: 100%; padding: 2.5rem 2.5rem 2rem; background: #f5f0eb; }
+    .review-card { min-width: 100%; padding: 3rem 2rem 2.5rem; text-align: center; }
 
-    .review-stars { font-size: 1.25rem; color: #c4a060; margin-bottom: 1.25rem; letter-spacing: 2px; }
+    .review-stars {
+      font-size: 1.3rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      letter-spacing: 3px;
+    }
 
     .review-text {
+      font-family: var(--ff-head);
       font-style: italic;
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: #5a4d45;
-      margin-bottom: 1.25rem;
+      font-weight: 300;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .review-text::before { content: '\201C'; }
     .review-text::after  { content: '\201D'; }
 
-    .review-author { font-size: 0.85rem; color: #8a7060; letter-spacing: 0.05em; }
-    .review-date   { font-size: 0.75rem; color: #b0a098; margin-top: 0.2rem; }
+    .review-author {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .review-date {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
 
     .carousel-nav {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 1rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
 
     .carousel-btn {
       background: none;
-      border: 1px solid #c4b5a5;
-      color: #8a7060;
-      width: 36px; height: 36px;
-      border-radius: 50%;
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 38px; height: 38px;
       cursor: pointer;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       line-height: 1;
       transition: all 0.2s;
       display: flex; align-items: center; justify-content: center;
     }
 
-    .carousel-btn:hover { background: #8a7060; color: #fff; border-color: #8a7060; }
+    .carousel-btn:hover { background: var(--text); color: var(--bg); border-color: var(--text); }
 
-    .dots { display: flex; gap: 7px; align-items: center; }
+    .dots { display: flex; gap: 8px; align-items: center; }
 
     .dot {
       width: 7px; height: 7px;
       border-radius: 50%;
-      background: #c4b5a5;
+      background: var(--border);
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
+      border: none;
     }
 
-    .dot.active { background: #8a7060; transform: scale(1.3); }
+    .dot.active { background: var(--text); transform: scale(1.3); }
 
-    /* ── CTA ── */
-    .cta-btn {
-      display: inline-block;
-      padding: 0.85rem 2.25rem;
-      border: 1px solid #8a7060;
-      border-radius: 4px;
-      color: #8a7060;
-      font-family: inherit;
+    .reviews-cta {
+      margin-top: 4rem;
+      padding-top: 4rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .reviews-cta p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 1rem 0 1.5rem;
+    }
+
+    /* ── Contacto ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .contact-info p {
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       font-size: 0.95rem;
-      letter-spacing: 0.06em;
+      color: var(--text);
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 0.1rem;
+      transition: color 0.2s, border-color 0.2s;
     }
 
-    .cta-btn:hover { background: #8a7060; color: #fff; }
+    .contact-email:hover { color: var(--accent); border-color: var(--accent); }
+
+    .form-card { }
+
+    .fg { margin-bottom: 1.1rem; }
+
+    .fg > label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+
+    .fg input,
+    .fg textarea {
+      width: 100%;
+      padding: 0.7rem 0;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      border-radius: 0;
+      font-family: var(--ff-body);
+      font-size: 1rem;
+      color: var(--text);
+      background: transparent;
+      outline: none;
+      resize: none;
+      transition: border-color 0.2s;
+    }
+
+    .fg input:focus,
+    .fg textarea:focus { border-color: var(--text); }
+
+    .fg input::placeholder,
+    .fg textarea::placeholder { color: var(--border); }
+
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    .submit-btn {
+      margin-top: 1rem;
+      padding: 0.85rem 2.5rem;
+      background: var(--accent);
+      color: var(--text);
+      border: 1px solid var(--text);
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      letter-spacing: 0.03em;
+    }
+
+    .submit-btn:hover { background: var(--accent-dark); }
+    .submit-btn:disabled { opacity: 0.6; cursor: default; }
+
+    .form-result {
+      font-size: 0.88rem;
+      margin-top: 0.9rem;
+      min-height: 1.2em;
+    }
+
+    @media (max-width: 640px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .fg-row { grid-template-columns: 1fr; }
+    }
 
     /* ── Footer ── */
     footer {
-      padding: 2rem;
+      padding: 2rem 3rem;
       text-align: center;
-      font-size: 0.75rem;
-      color: #b0a098;
+      font-size: 0.78rem;
+      color: var(--muted);
       letter-spacing: 0.05em;
+      border-top: 1px solid var(--border);
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      h1 { font-size: 1.7rem; }
-      .review-card { padding: 2rem 1.25rem 1.5rem; }
-      .input-row button { font-size: 0.82rem; padding: 0.75rem 0.9rem; }
+    @media (max-width: 600px) {
+      section { padding: 4rem 1.5rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ── Nav ── -->
+  <nav>
+    <a href="#inicio" class="nav-brand">Natalia Sierra</a>
+    <button class="nav-toggle" aria-label="Menú" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#areas">Áreas</a></li>
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#resenas">Reseñas</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#contacto" class="nav-cta">Reservar sesión</a></li>
+    </ul>
+  </nav>
+
   <!-- ── Hero ── -->
-  <section class="hero">
-    <div class="container">
-      <p class="logo">Psicología &amp; Bienestar</p>
-      <h1>Natalia Sierra</h1>
-      <p class="subtitle">Psicóloga</p>
-      <div class="divider"></div>
-      <p class="message">
-        Estamos preparando algo especial para ti.<br />
-        Muy pronto encontrarás aquí un espacio de acompañamiento,<br />
-        escucha y crecimiento personal.
+  <section id="inicio">
+    <div class="hero-inner">
+      <h1>Terapia Bajo Coste</h1>
+      <p class="hero-subtitle">Online</p>
+      <p class="hero-desc">
+        Terapia humanista-existencial con enfoque integrador.<br />
+        Jóvenes y adultos en formato online.
       </p>
-      <label class="form-label" for="email">
-        Déjanos tu correo y te avisamos cuando abramos.<br />
-        También puedes escribirnos para agendar una sesión.
-      </label>
-      <form onsubmit="handleNewsletterSubmit(event)">
-        <div class="input-row">
-          <input type="email" id="email" name="email"
-            placeholder="tu@correo.com" required autocomplete="email" />
-          <button type="submit">Quiero saber más</button>
-        </div>
-        <p class="note" id="newsletter-msg"></p>
-      </form>
+      <div class="hero-pricing">
+        <p class="hero-free">Primera llamada: 15 minutos gratis</p>
+        <p class="hero-price-label">SESIONES DE TERAPIA:</p>
+        <p class="hero-price">45 € / 60 MINUTOS</p>
+      </div>
+      <a href="#contacto" class="btn-primary">Reservar sesión</a>
     </div>
   </section>
 
-  <!-- ── Reviews carousel ── -->
-  <section class="section alt" id="resenas">
+  <!-- ── Sobre mí ── -->
+  <section id="sobre-mi">
     <div class="section-inner">
-      <h2>Lo que dicen mis pacientes</h2>
-      <p class="section-sub">Testimonios de quienes han confiado en mí</p>
+      <h2>Sobre mí</h2>
+      <div class="about-body" style="margin-top:2.5rem;">
+        <p>Soy Natalia Sierra, psicóloga general sanitaria con número de colegiada M-41692 especializada en terapia online integradora con enfoque humanista-existencial. Mi trabajo se centra en acompañar a adolescentes y adultos en sus procesos de cambio y autodescubrimiento desde un espacio seguro.</p>
+        <p>Mi formación comienza con el grado en Psicología por la Universidad Autónoma de Madrid y el Máster en Psicología General Sanitaria por la Universidad Pontificia de Comillas. Además, estoy especializada en Terapia Breve Estratégica, Internal Family Systems y Trauma y Apego. Aunque mi principal motivaci´ón es la formación continua en enfoques integradores que me permiten adaptar la terapia a las necesidades específicas de cada persona.</p>
+        <p>Mis valores principales son la cercanía, el respeto y una mirada individualizada para cada paciente. Aquí no seguimos guiones ni eres un número más. Busco conectar de forma forma verdadera y genuina con cada paciente.</p>
+      </div>
+    </div>
+  </section>
 
-      <div class="carousel-wrapper" id="carousel-wrapper">
+  <!-- ── Áreas ── -->
+  <section id="areas">
+    <div class="section-inner">
+      <h2>¿Qué áreas trabajo?</h2>
+      <ul class="areas-list">
+        <li>Depresión</li>
+        <li>Ansiedad</li>
+        <li>Autoestima y Autoconcepto</li>
+        <li>Dependencia emocional</li>
+        <li>Trauma y pego</li>
+        <li>Familia</li>
+        <li>Dificultades sexuales</li>
+        <li>Rupturas de pareja</li>
+        <li>Dismorfia corporal</li>
+        <li>Pensamientos rumiativos y obsesivos</li>
+        <li>LGBTIQA+</li>
+        <li>Crecimiento personal</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── Método ── -->
+  <section id="metodo">
+    <div class="section-inner">
+      <h2>¿Cómo trabajo?</h2>
+      <div class="steps">
+        <div class="step">
+          <p class="step-num">01</p>
+          <h3>Evaluación Inicial y Pequeñas Intervenciones</h3>
+          <p>La evaluación y la intervención irán lineales de la mano durante todo el proceso, para que sientas que trabajamos desde el principio</p>
+        </div>
+        <div class="step">
+          <p class="step-num">02</p>
+          <h3>Definición de Objetivos y Devolución</h3>
+          <p>Formularemos de forma conjunta lo que deberíamos trabajar, y te daré feedback de lo visto hasta ahora</p>
+        </div>
+        <div class="step">
+          <p class="step-num">03</p>
+          <h3>Intervención Individualizada</h3>
+          <p>Utilizaremos estrategias terapéuticas basadas en evidencia adaptadas a tu caso y a tu situación específica</p>
+        </div>
+        <div class="step">
+          <p class="step-num">04</p>
+          <h3>Consolidación del Cambio</h3>
+          <p>Trabajaremos para que los avances se mantengan en el tiempo y puedas afrontar futuras dificultades con mayor seguridad</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Reseñas ── -->
+  <section id="resenas">
+    <div class="section-inner">
+      <h2 style="text-align:center;">¿Qué dicen de mí mis pacientes?</h2>
+
+      <div class="carousel-wrapper" id="carousel-wrapper" style="margin-top:3rem;">
         <div class="carousel-track" id="carousel-track"></div>
       </div>
-
       <div class="carousel-nav">
         <button class="carousel-btn" id="prev-btn" aria-label="Anterior">&#8249;</button>
         <div class="dots" id="dots"></div>
         <button class="carousel-btn" id="next-btn" aria-label="Siguiente">&#8250;</button>
       </div>
+
+      <div class="reviews-cta">
+        <h2>¿Has trabajado conmigo?</h2>
+        <p>Tu opinión ayuda a otras personas a dar el primer paso</p>
+        <a href="dejar-resena.html" class="btn-outline">Dejar una reseña</a>
+      </div>
     </div>
   </section>
 
-  <!-- ── Leave a review CTA ── -->
-  <section class="section">
-    <div class="section-inner">
-      <h2>¿Has trabajado conmigo?</h2>
-      <p class="section-sub">Tu opinión ayuda a otras personas a dar el primer paso</p>
-      <a href="dejar-resena.html" class="cta-btn">Dejar una reseña</a>
+  <!-- ── Contacto ── -->
+  <section id="contacto">
+    <div class="section-inner wide">
+      <h2 style="text-align:center;">¿Te gustaría empezar tu proceso terapéutico?</h2>
+      <p style="text-align:center;color:var(--muted);margin-top:1rem;">Puedes reservar una primera llamada gratuita de 15 minutos para conocernos, resolver tus dudas y valorar tu caso.</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p>Email</p>
+          <a href="mailto:psicologiabajocosteonline@gmail.com" class="contact-email">
+            psicologiabajocosteonline@gmail.com
+          </a>
+        </div>
+        <div class="form-card">
+          <p style="font-size:1rem;font-weight:500;margin-bottom:1.5rem;">Formulario de contacto</p>
+          <form id="contact-form" novalidate>
+            <div class="fg-row">
+              <div class="fg">
+                <label for="c-name">Nombre *</label>
+                <input type="text" id="c-name" name="name" required maxlength="80" />
+              </div>
+              <div class="fg">
+                <label for="c-age">Edad*</label>
+                <input type="text" id="c-age" name="age" required maxlength="10" />
+              </div>
+            </div>
+            <div class="fg">
+              <label for="c-email">Correo electrónico*</label>
+              <input type="email" id="c-email" name="email" required autocomplete="email" />
+            </div>
+            <div class="fg">
+              <label for="c-reason">Motivo de consulta *</label>
+              <textarea id="c-reason" name="reason" rows="3" required></textarea>
+            </div>
+            <div class="fg">
+              <label for="c-availability">Disponibilidad para sesión*</label>
+              <input type="text" id="c-availability" name="availability" required maxlength="120" />
+            </div>
+            <button type="submit" class="submit-btn" id="contact-submit">Enviar mensaje</button>
+            <p class="form-result" id="contact-msg"></p>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
   <footer>
-    &copy; <span id="year"></span> Natalia Sierra Psicóloga &mdash; Todos los derechos reservados
+    &copy; <span id="year"></span> Natalia Sierra &mdash; Todos los derechos reservados
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // ── Nav toggle ──
+    document.getElementById('nav-toggle').addEventListener('click', function () {
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        document.getElementById('nav-links').classList.remove('open');
+      });
+    });
+
+    // ── Carousel ──
     function stars(n) {
       return '★'.repeat(Number(n)) + '☆'.repeat(5 - Number(n));
     }
 
     function formatDate(iso) {
-      const [y, m, d] = iso.split('-');
+      const [y, m] = iso.split('-');
       const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-      return `${Number(d)} ${months[Number(m) - 1]}. ${y}`;
+      return months[Number(m) - 1] + '. ' + y;
     }
 
     function parseCSV(text) {
@@ -278,7 +707,7 @@
         if (!lines[i].trim()) continue;
         const vals = parseLine(lines[i]);
         const obj = {};
-        headers.forEach((h, idx) => obj[h.trim()] = (vals[idx] || '').trim());
+        headers.forEach(function (h, idx) { obj[h.trim()] = (vals[idx] || '').trim(); });
         rows.push(obj);
       }
       return rows;
@@ -305,7 +734,7 @@
 
     async function initCarousel() {
       const track   = document.getElementById('carousel-track');
-      const dots    = document.getElementById('dots');
+      const dotsEl  = document.getElementById('dots');
       const prevBtn = document.getElementById('prev-btn');
       const nextBtn = document.getElementById('next-btn');
 
@@ -316,44 +745,44 @@
       } catch (_) {}
 
       if (!reviews.length) {
-        track.innerHTML = `<div class="review-card" style="min-width:100%;padding:2.5rem;color:#8a7060;font-style:italic">Pronto aparecerán aquí las primeras reseñas.</div>`;
+        track.innerHTML = '<div class="review-card" style="min-width:100%;padding:2.5rem;color:#8a7060;font-style:italic">Pronto aparecerán aquí las primeras reseñas.</div>';
         prevBtn.style.display = nextBtn.style.display = 'none';
         return;
       }
 
-      reviews.forEach((r, i) => {
+      reviews.forEach(function (r, i) {
         const card = document.createElement('div');
         card.className = 'review-card';
-        card.setAttribute('aria-label', `Reseña ${i + 1} de ${reviews.length}`);
-        card.innerHTML = `
-          <div class="review-stars">${stars(r.stars)}</div>
-          <p class="review-text">${escapeHtml(r.public_comment)}</p>
-          <p class="review-author">${escapeHtml(r.name)}</p>
-          <p class="review-date">${formatDate(r.date)}</p>`;
+        card.setAttribute('aria-label', 'Reseña ' + (i + 1) + ' de ' + reviews.length);
+        card.innerHTML =
+          '<div class="review-stars">' + stars(r.stars) + '</div>' +
+          '<p class="review-text">' + escapeHtml(r.public_comment) + '</p>' +
+          '<p class="review-author">' + escapeHtml(r.name) + '</p>' +
+          '<p class="review-date">' + formatDate(r.date) + '</p>';
         track.appendChild(card);
 
         const dot = document.createElement('button');
         dot.className = 'dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', `Reseña ${i + 1}`);
-        dot.addEventListener('click', () => { goTo(i); resetTimer(); });
-        dots.appendChild(dot);
+        dot.setAttribute('aria-label', 'Reseña ' + (i + 1));
+        dot.addEventListener('click', function () { goTo(i); resetTimer(); });
+        dotsEl.appendChild(dot);
       });
 
       if (reviews.length === 1) {
         prevBtn.style.display = nextBtn.style.display = 'none';
       } else {
-        prevBtn.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
-        nextBtn.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+        prevBtn.addEventListener('click', function () { goTo(current - 1); resetTimer(); });
+        nextBtn.addEventListener('click', function () { goTo(current + 1); resetTimer(); });
         startTimer();
       }
 
       const wrap = document.getElementById('carousel-wrapper');
-      wrap.addEventListener('mouseenter', () => clearInterval(timer));
+      wrap.addEventListener('mouseenter', function () { clearInterval(timer); });
       wrap.addEventListener('mouseleave', startTimer);
 
       let tx = 0;
-      wrap.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-      wrap.addEventListener('touchend', e => {
+      wrap.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+      wrap.addEventListener('touchend', function (e) {
         const dx = e.changedTouches[0].clientX - tx;
         if (Math.abs(dx) > 50) { goTo(current + (dx < 0 ? 1 : -1)); resetTimer(); }
       });
@@ -362,23 +791,74 @@
     function goTo(idx) {
       const total = document.querySelectorAll('.review-card').length;
       current = ((idx % total) + total) % total;
-      document.getElementById('carousel-track').style.transform = `translateX(-${current * 100}%)`;
-      document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+      document.getElementById('carousel-track').style.transform = 'translateX(-' + (current * 100) + '%)';
+      document.querySelectorAll('.dot').forEach(function (d, i) { d.classList.toggle('active', i === current); });
     }
 
-    function startTimer() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 5000); }
+    function startTimer() { clearInterval(timer); timer = setInterval(function () { goTo(current + 1); }, 5000); }
     function resetTimer() { clearInterval(timer); startTimer(); }
 
     initCarousel();
 
-    function handleNewsletterSubmit(e) {
+    // ── Contact form ──
+    const CONTACT_URL = 'https://formspree.io/f/mbdwvnpa';
+
+    document.getElementById('contact-form').addEventListener('submit', async function (e) {
       e.preventDefault();
-      const email = document.getElementById('email').value;
-      const msg   = document.getElementById('newsletter-msg');
-      msg.style.color = '#8a7060';
-      msg.textContent = '¡Gracias! Te contactaremos pronto en ' + email + '.';
-      e.target.reset();
-    }
+      const msg = document.getElementById('contact-msg');
+      const btn = document.getElementById('contact-submit');
+      const fd  = new FormData(this);
+
+      if (!fd.get('name').trim()) {
+        msg.style.color = '#b05050';
+        msg.textContent = 'Por favor escribe tu nombre.';
+        return;
+      }
+      if (!fd.get('email').trim()) {
+        msg.style.color = '#b05050';
+        msg.textContent = 'Por favor escribe tu correo electrónico.';
+        return;
+      }
+      if (!fd.get('reason').trim()) {
+        msg.style.color = '#b05050';
+        msg.textContent = 'Por favor indica el motivo de consulta.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando…';
+      msg.textContent = '';
+
+      const payload = {
+        _subject: 'Nueva consulta de ' + fd.get('name').trim(),
+        name: fd.get('name').trim(),
+        age: fd.get('age').trim(),
+        email: fd.get('email').trim(),
+        reason: fd.get('reason').trim(),
+        availability: fd.get('availability').trim() || '(no indicada)',
+      };
+
+      try {
+        const res = await fetch(CONTACT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (res.ok) {
+          msg.style.color = '#8a7060';
+          msg.textContent = '¡Gracias! Te responderé en menos de 24 horas.';
+          this.reset();
+        } else {
+          throw new Error();
+        }
+      } catch (_) {
+        msg.style.color = '#b05050';
+        msg.textContent = 'Hubo un problema al enviar. Escríbeme directamente a psicologiabajocosteonline@gmail.com';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Enviar mensaje';
+      }
+    });
   </script>
 </body>
 </html>
